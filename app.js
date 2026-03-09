@@ -54,7 +54,7 @@ const  store=MongoStore.create({
     touchAfter: 24 * 3600,
 });
 
-store.on("error",()=>{
+store.on("error",(err)=>{
     console.log("ERROR In MONGO SESSION STORE",err);
 });
 
@@ -112,7 +112,7 @@ app.use((req,res,next) => {
 
 app.use((err,req,res,next) => {
     let {statusCode=500,message="something went wrong!"}=err;
-    res.render("error.ejs", {err});
+    res.render("error", {err});
    // res.status(statusCode).send(message);
 })
 
