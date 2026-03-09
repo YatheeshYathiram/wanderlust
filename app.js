@@ -11,7 +11,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo').default;
 const flash = require("express-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local")
@@ -116,7 +116,12 @@ app.use((err,req,res,next) => {
    // res.status(statusCode).send(message);
 })
 
-const port = process.env.PORT || 8080;
-app.listen(8080, () => {
-    console.log("Server is listeninng to port 8080");
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
 });
+
+// app.listen(8080, () => {
+//     console.log("Server is listeninng to port 8080");
+// });
